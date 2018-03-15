@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clawhub.auth.mapper.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.clawhub.auth.entity.UserRole">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="create_operator_id" jdbcType="VARCHAR" property="createOperatorId" />
+    <result column="create_operator_name" jdbcType="VARCHAR" property="createOperatorName" />
+    <result column="create_time" jdbcType="BIGINT" property="createTime" />
+    <result column="update_operator_id" jdbcType="VARCHAR" property="updateOperatorId" />
+    <result column="update_operator_name" jdbcType="VARCHAR" property="updateOperatorName" />
+    <result column="update_time" jdbcType="BIGINT" property="updateTime" />
+    <result column="is_delete" jdbcType="CHAR" property="isDelete" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="user_id" jdbcType="VARCHAR" property="userId" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+  </resultMap>
+
+    <!-- 根据用户id获取角色ID列表 -->
+    <select id="findRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select role_id
+        from t_user_role
+        where is_delete = '0'
+        and user_id = #{userId}
+    </select>
+</mapper>
