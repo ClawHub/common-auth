@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * <Description> 用户管理相关接口实现 <br>
  *
@@ -42,5 +44,16 @@ public class UserFacadeImpl implements UserFacade {
         logger.info("UserFacadeImpl.findByUsername");
         logger.info("username :{}", username);
         return userService.findByUsername(username);
+    }
+
+    /**
+     * Query all sys user list.
+     *
+     * @return the list
+     */
+    @Override
+    public List<SysUser> queryAllSysUser() {
+        logger.info("UserFacadeImpl.queryAllSysUser");
+        return userService.queryAllSysUser();
     }
 }

@@ -2,6 +2,8 @@ package com.clawhub.auth;
 
 import com.clawhub.auth.entity.SysUser;
 
+import java.util.List;
+
 /**
  * <Description> 用户管理相关接口，查询，锁定，删除 <br>
  *
@@ -20,4 +22,12 @@ public interface UserFacade {
      * @taskId <br>
      */
     SysUser findByUsername(String username);
+
+
+    /**
+     * Query all sys user list.
+     *
+     * @return the list
+     */
+    List<SysUser> queryAllSysUser();
 }

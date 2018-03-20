@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <Description> 用户管理 <br>
  *
@@ -52,5 +54,16 @@ public class UserServiceImpl implements UserService {
         SysUser record = new SysUser();
         record.setUserName(username);
         return sysUserMapper.selectOne(record);
+    }
+
+    /**
+     * Query all sys user list.
+     *
+     * @return the list
+     */
+    @Override
+    public List<SysUser> queryAllSysUser() {
+        logger.info("UserServiceImpl.queryAllSysUser()");
+        return sysUserMapper.selectAll();
     }
 }
