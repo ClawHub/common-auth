@@ -45,13 +45,10 @@ public class AuthApp {
      */
     private static void close(ConfigurableApplicationContext confApp) {
 
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                if (confApp != null) {
-                    confApp.close();
-                }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (confApp != null) {
+                confApp.close();
             }
-        });
+        }));
     }
 }
