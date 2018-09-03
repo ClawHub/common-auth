@@ -5,10 +5,12 @@ package com.clawhub.auth.facade;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.clawhub.auth.RoleFacade;
+import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -39,5 +41,10 @@ public class RoleFacadeImpl implements RoleFacade {
     @Override
     public Set<String> findRolesByUser(SysUser userInfo) {
         return roleService.findRolesByUser(userInfo);
+    }
+
+    @Override
+    public List<SysRole> queryAllSysRole() {
+        return roleService.queryAllSysRole();
     }
 }

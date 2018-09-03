@@ -1,7 +1,9 @@
 package com.clawhub.auth.service;
 
+import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.entity.SysUser;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -22,4 +24,11 @@ public interface RoleService {
      * @taskId <br>
      */
     Set<String> findRolesByUser(SysUser userInfo);
+
+    /**
+     * 查询所有角色列表
+     *
+     * @return 所有角色列表
+     */
+    List<SysRole> queryAllSysRole();
 }

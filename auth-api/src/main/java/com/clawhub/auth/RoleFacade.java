@@ -1,7 +1,9 @@
 package com.clawhub.auth;
 
+import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.entity.SysUser;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -14,7 +16,7 @@ import java.util.Set;
  */
 public interface RoleFacade {
     /**
-     * Description: Find roles by user <br>
+     * Description: 通过用户信息获取角色名称列表 <br>
      *
      * @param userInfo user info
      * @return list
@@ -22,4 +24,11 @@ public interface RoleFacade {
      * @taskId <br>
      */
     Set<String> findRolesByUser(SysUser userInfo);
+
+    /**
+     * 查询所有的角色信息
+     *
+     * @return 所有的角色信息
+     */
+    List<SysRole> queryAllSysRole();
 }

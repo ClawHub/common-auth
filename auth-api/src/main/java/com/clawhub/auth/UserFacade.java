@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface UserFacade {
     /**
-     * Description: Find by username <br>
+     * Description: 根据用户名查询用户信息 <br>
      *
      * @param username username
      * @return sys user
@@ -25,7 +25,7 @@ public interface UserFacade {
 
 
     /**
-     * Query all sys user list.
+     * 查询所有的用户信息
      *
      * @return the list
      */

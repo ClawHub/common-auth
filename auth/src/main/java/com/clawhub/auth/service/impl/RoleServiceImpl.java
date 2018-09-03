@@ -3,6 +3,7 @@
  ****************************************************************************************/
 package com.clawhub.auth.service.impl;
 
+import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.mapper.SysRoleMapper;
 import com.clawhub.auth.mapper.UserRoleMapper;
@@ -71,5 +72,10 @@ public class RoleServiceImpl implements RoleService {
         //根据角色ID列表获取角色名称列表
         List<String> roleNames = sysRoleMapper.findRoleNamesByRoleIds(roleIds);
         return new HashSet<>(roleNames);
+    }
+
+    @Override
+    public List<SysRole> queryAllSysRole() {
+        return sysRoleMapper.selectAll();
     }
 }
