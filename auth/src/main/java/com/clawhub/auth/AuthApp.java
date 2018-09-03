@@ -1,11 +1,9 @@
 package com.clawhub.auth;
 
-import com.clawhub.spring.SpringContextHelper;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -36,18 +34,6 @@ public class AuthApp {
             close(confApp);
         }
 
-    }
-
-    /**
-     * Description:  注入springContextHelper <br>
-     *
-     * @return spring context helper
-     * @author LiZhiming <br>
-     * @taskId <br>
-     */
-    @Bean
-    public SpringContextHelper springHelper() {
-        return new SpringContextHelper();
     }
 
     /**
