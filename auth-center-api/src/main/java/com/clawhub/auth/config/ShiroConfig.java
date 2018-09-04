@@ -3,11 +3,12 @@ package com.clawhub.auth.config;
 
 import com.clawhub.redis.core.RedisTemplate;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.mgt.SecurityManager;
 import org.crazycake.shiro.IRedisManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisSessionDAO;
@@ -16,6 +17,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * <Description> ShiroConfig <br>
@@ -50,11 +55,11 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
-        shiroFilterFactoryBean.setLoginUrl("/authCtr/unauth");
+        shiroFilterFactoryBean.setLoginUrl("/auth/unAuth");
         // 登录成功后要跳转的链接
-        //shiroFilterFactoryBean.setSuccessUrl("/authCtr/success");
+        //shiroFilterFactoryBean.setSuccessUrl("/auth/success");
         //未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/authCtr/unAuthorized");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/auth/unAuthorized");
         // 权限控制map.
         shiroFilterFactoryBean.setFilterChainDefinitionMap(getAuthFacadeAdapter().loadFilterChainDefinitions());
         return shiroFilterFactoryBean;
@@ -136,6 +141,15 @@ public class ShiroConfig {
         logger.info("自定义sessionManager: ShiroConfiguration.sessionManager()");
         MySessionManager mySessionManager = new MySessionManager();
         mySessionManager.setSessionDAO(redisSessionDAO());
+        //会话超时时间，单位：毫秒
+        mySessionManager.setGlobalSessionTimeout(3 * 60 * 1000);
+        //监听类
+        List<SessionListener> listeners = new ArrayList<>();
+        listeners.add(new ShiroSessionListener());
+        mySessionManager.setSessionListeners(listeners);
+        //定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话,单位：毫秒
+        mySessionManager.setSessionValidationInterval(10 * 60 * 1000);
+        mySessionManager.setSessionValidationSchedulerEnabled(false);
         return mySessionManager;
     }
 

@@ -49,10 +49,10 @@ public class AuthFacadeAdapter {
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         List<SysResource> resources = resourceFacade.getAllResource();
         //测试：将鉴权关闭
-        filterChainDefinitionMap.put("/**", "anon");
+//        filterChainDefinitionMap.put("/**", "anon");
 
-        filterChainDefinitionMap.put("/authCtr/logout", "logout");
-        filterChainDefinitionMap.put("/authCtr/login", "anon");
+        filterChainDefinitionMap.put("/auth/logout", "logout");
+        filterChainDefinitionMap.put("/auth/login", "anon");
 //        for (SysResource resource : resources) {
 //            logger.info("=======================权限配置开始================================");
 //            logger.info("Size :{}", resources.size());
