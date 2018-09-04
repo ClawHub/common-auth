@@ -11,6 +11,7 @@
     <modules>
         <module>auth</module>
         <module>auth-api</module>
+        <module>auth-center-api</module>
     </modules>
     <properties>
         <!-- 文件拷贝时的编码 -->

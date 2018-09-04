@@ -1,10 +1,10 @@
 package com.clawhub.auth.service.impl;
 
 import com.clawhub.auth.entity.SysRole;
-import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.mapper.SysRoleMapper;
 import com.clawhub.auth.mapper.UserRoleMapper;
 import com.clawhub.auth.service.RoleService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,25 +45,25 @@ public class RoleServiceImpl implements RoleService {
     private UserRoleMapper userRoleMapper;
 
     /**
-     * Description: Find roles by user <br>
+     * Description: Find roles by userId <br>
      *
-     * @param userInfo user info
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
     @Override
-    public Set<String> findRolesByUser(SysUser userInfo) {
-        logger.info("RoleServiceImpl.findRolesByUser");
-        if (userInfo == null) {
-            return Collections.EMPTY_SET;
+    public Set<String> findRoleNamesByUserId(String userId) {
+        logger.info("RoleServiceImpl.findRoleNamesByUserId");
+        if (StringUtils.isBlank(userId)) {
+            return Collections.emptySet();
         }
-        logger.info("userId :{}", userInfo.getUserId());
+        logger.info("userId :{}", userId);
         //根据用户id获取角色ID列表
-        List<String> roleIds = userRoleMapper.findRoleIdsByUserId(userInfo.getUserId());
+        List<String> roleIds = userRoleMapper.findRoleIdsByUserId(userId);
 
         if (CollectionUtils.isEmpty(roleIds)) {
-            return Collections.EMPTY_SET;
+            return Collections.emptySet();
         }
         logger.info("roleIds.size :{}", roleIds.size());
         //根据角色ID列表获取角色名称列表

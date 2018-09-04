@@ -9,17 +9,25 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>auth-api</artifactId>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <artifactId>auth-center-api</artifactId>
+
     <dependencies>
-        <!--common-core-->
+        <!--auth-api-->
         <dependency>
             <groupId>com.clawhub</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>auth-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- shiro-->
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.crazycake</groupId>
+            <artifactId>shiro-redis</artifactId>
+            <version>3.1.0</version>
+        </dependency>
     </dependencies>
-
 </project>

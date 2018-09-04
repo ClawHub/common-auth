@@ -73,7 +73,7 @@ public class MyShiroRealm extends AuthorizingRealm {
             return null;
         }
         //根据用户信息获取角色名称列表
-        Set<String> roles = roleFacade.findRolesByUser(userInfo);
+        Set<String> roles = roleFacade.findRoleNamesByUserId(userInfo.getUserId());
         logger.info("角色名称列表：{}", roles);
         authorizationInfo.addRoles(roles);
 

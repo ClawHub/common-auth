@@ -28,16 +28,16 @@ public class RoleFacadeImpl implements RoleFacade {
     private RoleService roleService;
 
     /**
-     * Description: Find roles by user <br>
+     * Description: Find roles by userId <br>
      *
-     * @param userInfo user info
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
     @Override
-    public Set<String> findRolesByUser(SysUser userInfo) {
-        return roleService.findRolesByUser(userInfo);
+    public Set<String> findRoleNamesByUserId(String userId) {
+        return roleService.findRoleNamesByUserId(userId);
     }
 
     @Override

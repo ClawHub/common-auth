@@ -16,14 +16,14 @@ import java.util.Set;
  */
 public interface RoleFacade {
     /**
-     * Description: 通过用户信息获取角色名称列表 <br>
+     * Description: 通过用户ID获取角色名称列表 <br>
      *
-     * @param userInfo user info
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    Set<String> findRolesByUser(SysUser userInfo);
+    Set<String> findRoleNamesByUserId(String userId);
 
     /**
      * 查询所有的角色信息
