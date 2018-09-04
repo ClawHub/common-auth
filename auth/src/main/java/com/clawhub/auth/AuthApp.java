@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @MapperScan("com.clawhub.auth.mapper")
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.clawhub"})
+@ComponentScan(basePackages = {"com.clawhub"})//swagger 使用
 public class AuthApp {
     /**
      * Description: 启动springboot<br>

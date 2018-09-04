@@ -46,6 +46,9 @@ public class UserFacadeImpl implements UserFacade {
         return userService.findByUsername(username);
     }
 
+    public static void main(String[] args) {
+        System.out.println(System.currentTimeMillis());
+    }
     /**
      * Query all sys user list.
      *

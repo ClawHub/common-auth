@@ -1,7 +1,7 @@
 package com.clawhub.auth.config;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.clawhub.auth.PermissionFacade;
+import com.clawhub.auth.ResourceFacade;
 import com.clawhub.auth.RoleFacade;
 import com.clawhub.auth.UserFacade;
 import com.clawhub.auth.entity.SysUser;
@@ -49,10 +49,10 @@ public class MyShiroRealm extends AuthorizingRealm {
     private RoleFacade roleFacade;
 
     /**
-     * The Permission Facade.
+     * The Resource facade.
      */
     @Reference
-    private PermissionFacade permissionFacade;
+    private ResourceFacade resourceFacade;
 
     /**
      * Description: Do get authorization info <br>
@@ -78,7 +78,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         authorizationInfo.addRoles(roles);
 
         //根据用户信息获取权限列表
-        Set<String> permissions = permissionFacade.findPermissionsByUser(userInfo);
+        Set<String> permissions = resourceFacade.findPermissionsByUser(userInfo);
         logger.info("权限列表：{}", permissions);
         authorizationInfo.addStringPermissions(permissions);
         return authorizationInfo;

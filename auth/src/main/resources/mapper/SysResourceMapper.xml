@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.clawhub.auth.mapper.SysPermissionMapper">
-    <resultMap id="BaseResultMap" type="com.clawhub.auth.entity.SysPermission">
+<mapper namespace="com.clawhub.auth.mapper.SysResourceMapper">
+    <resultMap id="BaseResultMap" type="com.clawhub.auth.entity.SysResource">
         <!--
           WARNING - @mbg.generated
         -->
@@ -14,8 +14,8 @@
         <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
         <result column="is_delete" jdbcType="CHAR" property="isDelete"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
-        <result column="permission_id" jdbcType="VARCHAR" property="permissionId"/>
-        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+        <result column="resource_id" jdbcType="VARCHAR" property="resourceId"/>
+        <result column="resource_name" jdbcType="VARCHAR" property="resourceName"/>
         <result column="resource_type" jdbcType="VARCHAR" property="resourceType"/>
         <result column="url" jdbcType="VARCHAR" property="url"/>
         <result column="permission" jdbcType="VARCHAR" property="permission"/>
@@ -26,19 +26,19 @@
     </resultMap>
 
     <!--根据权限ID列表获取权限列表 -->
-    <select id="findPermissionsByIds" parameterType="java.util.List" resultType="java.lang.String">
+    <select id="findResourcesByIds" parameterType="java.util.List" resultType="java.lang.String">
         select permission
-        from t_sys_permission
+        from t_sys_resource
         where is_delete = '0'
         and state = '0'
-        and permission_id in
+        and resource_id in
         <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
             #{item,jdbcType=VARCHAR}
         </foreach>
     </select>
 
     <!--获取所有权限列表-->
-    <select id="selectAllPermissions" resultMap="BaseResultMap">
+    <select id="selectAllResource" resultMap="BaseResultMap">
         select *
         from t_sys_permission
         where is_delete = '0'

@@ -1,15 +1,15 @@
 package com.clawhub.auth.mapper;
 
-import com.clawhub.auth.entity.RolePermission;
+import com.clawhub.auth.entity.RoleResource;
 import com.clawhub.common.IMapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 /**
- * The interface Role permission mapper.
+ * The interface Role Resource mapper.
  */
-public interface RolePermissionMapper extends IMapper<RolePermission> {
+public interface RoleResourceMapper extends IMapper<RoleResource> {
     /**
      * Description: 根据角色ID列表获取权限ID列表<br>
      *
@@ -18,5 +18,5 @@ public interface RolePermissionMapper extends IMapper<RolePermission> {
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    List<String> findPermissionIdsByRoleIds(@Param(value = "list") List<String> roleIds);
+    List<String> findResourceIdsByRoleIds(@Param(value = "list") List<String> roleIds);
 }

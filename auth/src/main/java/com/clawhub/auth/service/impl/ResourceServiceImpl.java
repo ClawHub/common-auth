@@ -1,14 +1,11 @@
-/**************************************************************************************** 
- 南京小视科技有限公司           
- ****************************************************************************************/
 package com.clawhub.auth.service.impl;
 
-import com.clawhub.auth.entity.SysPermission;
+import com.clawhub.auth.entity.SysResource;
 import com.clawhub.auth.entity.SysUser;
-import com.clawhub.auth.mapper.RolePermissionMapper;
-import com.clawhub.auth.mapper.SysPermissionMapper;
+import com.clawhub.auth.mapper.RoleResourceMapper;
+import com.clawhub.auth.mapper.SysResourceMapper;
 import com.clawhub.auth.mapper.UserRoleMapper;
-import com.clawhub.auth.service.PermissionService;
+import com.clawhub.auth.service.ResourceService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * <Description> 权限管理 <br>
+ * <Description> 资源管理 <br>
  *
  * @author LiZhiming<br>
  * @version 1.0<br>
@@ -29,23 +26,23 @@ import java.util.Set;
  * @CreateDate 2018年02月07日<br>
  */
 @Service
-public class PermissionServiceImpl implements PermissionService {
+public class ResourceServiceImpl implements ResourceService {
 
     /**
      * The Logger.
      */
-    private Logger logger = LoggerFactory.getLogger(PermissionServiceImpl.class);
+    private Logger logger = LoggerFactory.getLogger(ResourceServiceImpl.class);
     /**
-     * The Sys permission mapper.
+     * The Sys resource mapper.
      */
     @Autowired
-    private SysPermissionMapper sysPermissionMapper;
+    private SysResourceMapper sysResourceMapper;
 
     /**
-     * The Role permission mapper.
+     * The Role resource mapper.
      */
     @Autowired
-    private RolePermissionMapper rolePermissionMapper;
+    private RoleResourceMapper roleResourceMapper;
 
     /**
      * The User role mapper.
@@ -73,14 +70,14 @@ public class PermissionServiceImpl implements PermissionService {
         if (CollectionUtils.isEmpty(roleIds)) {
             return Collections.EMPTY_SET;
         }
-        //根据角色ID列表获取权限ID列表
-        List<String> permissionIds = rolePermissionMapper.findPermissionIdsByRoleIds(roleIds);
+        //根据角色ID列表获取资源ID列表
+        List<String> permissionIds = roleResourceMapper.findResourceIdsByRoleIds(roleIds);
         if (CollectionUtils.isEmpty(permissionIds)) {
             return Collections.EMPTY_SET;
         }
         logger.info("permissionIds.size :{}", permissionIds.size());
         //根据权限ID列表获取权限列表
-        List<String> permissions = sysPermissionMapper.findPermissionsByIds(permissionIds);
+        List<String> permissions = sysResourceMapper.findResourcesByIds(permissionIds);
 
         return new HashSet<>(permissions);
     }
@@ -93,7 +90,7 @@ public class PermissionServiceImpl implements PermissionService {
      * @taskId <br>
      */
     @Override
-    public List<SysPermission> getAllPermissions() {
-        return sysPermissionMapper.selectAllPermissions();
+    public List<SysResource> getAllResource() {
+        return sysResourceMapper.selectAllResource();
     }
 }

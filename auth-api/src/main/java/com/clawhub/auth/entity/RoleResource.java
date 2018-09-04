@@ -3,10 +3,9 @@ package com.clawhub.auth.entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
-@Table(name = "t_sys_permission")
-public class SysPermission implements Serializable {
+@Table(name = "t_role_resource")
+public class RoleResource {
     /**
      * id
      */
@@ -61,54 +60,16 @@ public class SysPermission implements Serializable {
     private String remark;
 
     /**
-     * 权限ID
+     * 角色ID
      */
-    @Column(name = "permission_id")
-    private String permissionId;
+    @Column(name = "role_id")
+    private String roleId;
 
     /**
-     * 权限名称
+     * 资源ID
      */
-    @Column(name = "permission_name")
-    private String permissionName;
-
-    /**
-     * 资源类型，[menu|button]
-     */
-    @Column(name = "resource_type")
-    private String resourceType;
-
-    /**
-     * 资源路径
-     */
-    private String url;
-
-    /**
-     * 权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view
-     */
-    private String permission;
-
-    /**
-     * 父编号
-     */
-    @Column(name = "parent_id")
-    private String parentId;
-
-    /**
-     * 父编号列表
-     */
-    @Column(name = "parent_ids")
-    private String parentIds;
-
-    /**
-     * 0-未锁定,1-已锁定
-     */
-    private String state;
-
-    /**
-     * 排序
-     */
-    private Integer sort;
+    @Column(name = "resource_id")
+    private String resourceId;
 
     /**
      * 获取id
@@ -273,164 +234,38 @@ public class SysPermission implements Serializable {
     }
 
     /**
-     * 获取权限ID
+     * 获取角色ID
      *
-     * @return permission_id - 权限ID
+     * @return role_id - 角色ID
      */
-    public String getPermissionId() {
-        return permissionId;
+    public String getRoleId() {
+        return roleId;
     }
 
     /**
-     * 设置权限ID
+     * 设置角色ID
      *
-     * @param permissionId 权限ID
+     * @param roleId 角色ID
      */
-    public void setPermissionId(String permissionId) {
-        this.permissionId = permissionId;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     /**
-     * 获取权限名称
+     * 获取资源ID
      *
-     * @return permission_name - 权限名称
+     * @return resource_id - 资源ID
      */
-    public String getPermissionName() {
-        return permissionName;
+    public String getResourceId() {
+        return resourceId;
     }
 
     /**
-     * 设置权限名称
+     * 设置资源ID
      *
-     * @param permissionName 权限名称
+     * @param resourceId 资源ID
      */
-    public void setPermissionName(String permissionName) {
-        this.permissionName = permissionName;
-    }
-
-    /**
-     * 获取资源类型，[menu|button]
-     *
-     * @return resource_type - 资源类型，[menu|button]
-     */
-    public String getResourceType() {
-        return resourceType;
-    }
-
-    /**
-     * 设置资源类型，[menu|button]
-     *
-     * @param resourceType 资源类型，[menu|button]
-     */
-    public void setResourceType(String resourceType) {
-        this.resourceType = resourceType;
-    }
-
-    /**
-     * 获取资源路径
-     *
-     * @return url - 资源路径
-     */
-    public String getUrl() {
-        return url;
-    }
-
-    /**
-     * 设置资源路径
-     *
-     * @param url 资源路径
-     */
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    /**
-     * 获取权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view
-     *
-     * @return permission - 权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view
-     */
-    public String getPermission() {
-        return permission;
-    }
-
-    /**
-     * 设置权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view
-     *
-     * @param permission 权限字符串,menu例子：role:*，button例子：role:create,role:update,role:delete,role:view
-     */
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
-
-    /**
-     * 获取父编号
-     *
-     * @return parent_id - 父编号
-     */
-    public String getParentId() {
-        return parentId;
-    }
-
-    /**
-     * 设置父编号
-     *
-     * @param parentId 父编号
-     */
-    public void setParentId(String parentId) {
-        this.parentId = parentId;
-    }
-
-    /**
-     * 获取父编号列表
-     *
-     * @return parent_ids - 父编号列表
-     */
-    public String getParentIds() {
-        return parentIds;
-    }
-
-    /**
-     * 设置父编号列表
-     *
-     * @param parentIds 父编号列表
-     */
-    public void setParentIds(String parentIds) {
-        this.parentIds = parentIds;
-    }
-
-    /**
-     * 获取0-未锁定,1-已锁定
-     *
-     * @return state - 0-未锁定,1-已锁定
-     */
-    public String getState() {
-        return state;
-    }
-
-    /**
-     * 设置0-未锁定,1-已锁定
-     *
-     * @param state 0-未锁定,1-已锁定
-     */
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    /**
-     * 获取排序
-     *
-     * @return sort - 排序
-     */
-    public Integer getSort() {
-        return sort;
-    }
-
-    /**
-     * 设置排序
-     *
-     * @param sort 排序
-     */
-    public void setSort(Integer sort) {
-        this.sort = sort;
+    public void setResourceId(String resourceId) {
+        this.resourceId = resourceId;
     }
 }

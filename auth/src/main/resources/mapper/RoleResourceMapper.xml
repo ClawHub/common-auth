@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.clawhub.auth.mapper.UserRoleMapper">
-    <resultMap id="BaseResultMap" type="com.clawhub.auth.entity.UserRole">
+<mapper namespace="com.clawhub.auth.mapper.RoleResourceMapper">
+    <resultMap id="BaseResultMap" type="com.clawhub.auth.entity.RoleResource">
         <!--
           WARNING - @mbg.generated
         -->
@@ -14,15 +14,18 @@
         <result column="update_time" jdbcType="BIGINT" property="updateTime"/>
         <result column="is_delete" jdbcType="CHAR" property="isDelete"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
-        <result column="user_id" jdbcType="VARCHAR" property="userId"/>
         <result column="role_id" jdbcType="VARCHAR" property="roleId"/>
+        <result column="resource_id" jdbcType="VARCHAR" property="resourceId"/>
     </resultMap>
 
-    <!-- 根据用户id获取角色ID列表 -->
-    <select id="findRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.String">
-        select role_id
-        from t_user_role
+    <!--根据角色ID列表获取资源ID列表 -->
+    <select id="findResourceIdsByRoleIds" parameterType="java.util.List" resultType="java.lang.String">
+        select resource_id
+        from t_role_resource
         where is_delete = '0'
-        and user_id = #{userId}
+        and role_id in
+        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
+            #{item,jdbcType=VARCHAR}
+        </foreach>
     </select>
 </mapper>
