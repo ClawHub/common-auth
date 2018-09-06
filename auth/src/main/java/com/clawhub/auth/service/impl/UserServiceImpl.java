@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
         logger.info("UserServiceImpl.findByUsername()");
         logger.info("username :{}", username);
         SysUser record = new SysUser();
-        record.setUserName(username);
+        record.setUsername(username);
+        record.setIsDelete("0");
         return sysUserMapper.selectOne(record);
     }
 

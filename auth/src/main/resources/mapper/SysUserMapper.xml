@@ -15,7 +15,7 @@
         <result column="is_delete" jdbcType="CHAR" property="isDelete"/>
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
-        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="salt" jdbcType="VARCHAR" property="salt"/>
         <result column="state" jdbcType="CHAR" property="state"/>

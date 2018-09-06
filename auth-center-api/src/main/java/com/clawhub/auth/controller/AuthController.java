@@ -49,7 +49,7 @@ public class AuthController {
         SysUser userInfo = JSONObject.parseObject(param, SysUser.class);
         JSONObject jsonObject = new JSONObject();
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUserName(), userInfo.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(userInfo.getUsername(), userInfo.getPassword());
         try {
             subject.login(token);
             jsonObject.put("token", subject.getSession().getId());
