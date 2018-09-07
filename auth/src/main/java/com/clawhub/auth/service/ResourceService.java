@@ -1,7 +1,6 @@
 package com.clawhub.auth.service;
 
 import com.clawhub.auth.entity.SysResource;
-import com.clawhub.auth.entity.SysUser;
 
 import java.util.List;
 import java.util.Set;
@@ -16,14 +15,14 @@ import java.util.Set;
  */
 public interface ResourceService {
     /**
-     * Description: 根据用户信息获取权限列表 <br>
+     * Description: 根据用户ID获取权限列表 <br>
      *
-     * @param userInfo userInfo
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    Set<String> findPermissionsByUser(SysUser userInfo);
+    Set<SysResource> findPermissionsByUserId(String userId);
 
     /**
      * Description: 获取所有资源列表 <br>

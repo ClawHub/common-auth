@@ -142,7 +142,7 @@ public class ShiroConfig {
         MySessionManager mySessionManager = new MySessionManager();
         mySessionManager.setSessionDAO(redisSessionDAO());
         //会话超时时间，单位：毫秒
-        mySessionManager.setGlobalSessionTimeout(3 * 60 * 1000);
+        mySessionManager.setGlobalSessionTimeout(30 * 60 * 1000);
         //监听类
         List<SessionListener> listeners = new ArrayList<>();
         listeners.add(new ShiroSessionListener());

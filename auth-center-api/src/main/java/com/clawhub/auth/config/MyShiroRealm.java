@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.clawhub.auth.ResourceFacade;
 import com.clawhub.auth.RoleFacade;
 import com.clawhub.auth.UserFacade;
+import com.clawhub.auth.entity.SysResource;
 import com.clawhub.auth.entity.SysUser;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -18,7 +19,9 @@ import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -78,7 +81,13 @@ public class MyShiroRealm extends AuthorizingRealm {
         authorizationInfo.addRoles(roles);
 
         //根据用户信息获取权限列表
-        Set<String> permissions = resourceFacade.findPermissionsByUser(userInfo);
+        Set<SysResource> resources = resourceFacade.findPermissionsByUserId(userInfo.getUserId());
+        Set<String> permissions = new HashSet<>();
+        if (!CollectionUtils.isEmpty(resources)) {
+            for (SysResource sysResource : resources) {
+                permissions.add(sysResource.getPermission());
+            }
+        }
         logger.info("权限列表：{}", permissions);
         authorizationInfo.addStringPermissions(permissions);
         return authorizationInfo;

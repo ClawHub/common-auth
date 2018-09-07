@@ -26,8 +26,8 @@
     </resultMap>
 
     <!--根据权限ID列表获取权限列表 -->
-    <select id="findResourcesByIds" parameterType="java.util.List" resultType="java.lang.String">
-        select permission
+    <select id="findResourcesByIds" parameterType="java.util.List" resultMap="BaseResultMap">
+        select *
         from t_sys_resource
         where is_delete = '0'
         and state = '0'

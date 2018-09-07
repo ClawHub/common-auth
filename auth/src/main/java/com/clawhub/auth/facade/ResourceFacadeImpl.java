@@ -3,7 +3,6 @@ package com.clawhub.auth.facade;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.clawhub.auth.ResourceFacade;
 import com.clawhub.auth.entity.SysResource;
-import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,16 +27,16 @@ public class ResourceFacadeImpl implements ResourceFacade {
     private ResourceService resourceService;
 
     /**
-     * Description: 根据用户信息获取权限列表 <br>
+     * Description: 根据用户ID获取权限列表 <br>
      *
-     * @param userInfo userInfo
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
     @Override
-    public Set<String> findPermissionsByUser(SysUser userInfo) {
-        return resourceService.findPermissionsByUser(userInfo);
+    public Set<SysResource> findPermissionsByUserId(String userId) {
+        return resourceService.findPermissionsByUserId(userId);
     }
 
     /**

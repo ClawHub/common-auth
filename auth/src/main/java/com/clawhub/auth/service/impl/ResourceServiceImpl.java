@@ -1,11 +1,11 @@
 package com.clawhub.auth.service.impl;
 
 import com.clawhub.auth.entity.SysResource;
-import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.mapper.RoleResourceMapper;
 import com.clawhub.auth.mapper.SysResourceMapper;
 import com.clawhub.auth.mapper.UserRoleMapper;
 import com.clawhub.auth.service.ResourceService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,21 +51,21 @@ public class ResourceServiceImpl implements ResourceService {
     private UserRoleMapper userRoleMapper;
 
     /**
-     * Description: 根据用户信息获取权限列表<br>
+     * Description: 根据用户ID获取权限列表<br>
      *
-     * @param userInfo userInfo
+     * @param userId userId
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
     @Override
-    public Set<String> findPermissionsByUser(SysUser userInfo) {
-        logger.info("PermissionServiceImpl.findPermissionsByUser");
-        if (userInfo == null) {
+    public Set<SysResource> findPermissionsByUserId(String userId) {
+        logger.info("PermissionServiceImpl.findPermissionsByUserId");
+        if (StringUtils.isBlank(userId)) {
             return Collections.EMPTY_SET;
         }
         // 根据用户id获取角色ID列表
-        List<String> roleIds = userRoleMapper.findRoleIdsByUserId(userInfo.getUserId());
+        List<String> roleIds = userRoleMapper.findRoleIdsByUserId(userId);
         logger.info("roleIds.size :{}", roleIds.size());
         if (CollectionUtils.isEmpty(roleIds)) {
             return Collections.EMPTY_SET;
@@ -76,10 +76,10 @@ public class ResourceServiceImpl implements ResourceService {
             return Collections.EMPTY_SET;
         }
         logger.info("permissionIds.size :{}", permissionIds.size());
-        //根据权限ID列表获取权限列表
-        List<String> permissions = sysResourceMapper.findResourcesByIds(permissionIds);
+        //根据资源ID列表获取资源列表
+        List<SysResource> resources = sysResourceMapper.findResourcesByIds(permissionIds);
 
-        return new HashSet<>(permissions);
+        return new HashSet<>(resources);
     }
 
     /**

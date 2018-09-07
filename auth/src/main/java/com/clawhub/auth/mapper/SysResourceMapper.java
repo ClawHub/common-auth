@@ -11,14 +11,14 @@ import java.util.List;
  */
 public interface SysResourceMapper extends IMapper<SysResource> {
     /**
-     * Description: 根据资源ID列表获取权限列表 <br>
+     * Description: 根据资源ID列表获取资源列表 <br>
      *
      * @param resourceIds 资源ID列表
      * @return list
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    List<String> findResourcesByIds(@Param(value = "list") List<String> resourceIds);
+    List<SysResource> findResourcesByIds(@Param(value = "list") List<String> resourceIds);
 
     /**
      * Description:获取所有权限列表 <br>
