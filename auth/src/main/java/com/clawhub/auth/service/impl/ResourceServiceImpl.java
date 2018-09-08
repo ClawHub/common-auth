@@ -59,7 +59,7 @@ public class ResourceServiceImpl implements ResourceService {
      * @taskId <br>
      */
     @Override
-    public Set<SysResource> findPermissionsByUserId(String userId) {
+    public Set<SysResource> findSysResourcesByUserId(String userId) {
         logger.info("PermissionServiceImpl.findPermissionsByUserId");
         if (StringUtils.isBlank(userId)) {
             return Collections.EMPTY_SET;

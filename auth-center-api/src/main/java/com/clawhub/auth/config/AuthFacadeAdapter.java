@@ -51,7 +51,7 @@ public class AuthFacadeAdapter {
         //测试：将鉴权关闭
 //        filterChainDefinitionMap.put("/**", "anon");
 
-        filterChainDefinitionMap.put("/auth/logout", "logout");
+        filterChainDefinitionMap.put("/auth/logout", "anon");
         filterChainDefinitionMap.put("/auth/login", "anon");
 //        for (SysResource resource : resources) {
 //            logger.info("=======================权限配置开始================================");

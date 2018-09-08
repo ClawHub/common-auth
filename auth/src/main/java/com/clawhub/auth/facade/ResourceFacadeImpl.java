@@ -35,8 +35,8 @@ public class ResourceFacadeImpl implements ResourceFacade {
      * @taskId <br>
      */
     @Override
-    public Set<SysResource> findPermissionsByUserId(String userId) {
-        return resourceService.findPermissionsByUserId(userId);
+    public Set<SysResource> findSysResourcesByUserId(String userId) {
+        return resourceService.findSysResourcesByUserId(userId);
     }
 
     /**

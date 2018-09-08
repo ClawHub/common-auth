@@ -81,7 +81,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         authorizationInfo.addRoles(roles);
 
         //根据用户信息获取权限列表
-        Set<SysResource> resources = resourceFacade.findPermissionsByUserId(userInfo.getUserId());
+        Set<SysResource> resources = resourceFacade.findSysResourcesByUserId(userInfo.getUserId());
         Set<String> permissions = new HashSet<>();
         if (!CollectionUtils.isEmpty(resources)) {
             for (SysResource sysResource : resources) {

@@ -144,12 +144,12 @@ public class ShiroConfig {
         //会话超时时间，单位：毫秒
         mySessionManager.setGlobalSessionTimeout(30 * 60 * 1000);
         //监听类
-        List<SessionListener> listeners = new ArrayList<>();
-        listeners.add(new ShiroSessionListener());
-        mySessionManager.setSessionListeners(listeners);
+//        List<SessionListener> listeners = new ArrayList<>();
+//        listeners.add(new ShiroSessionListener());
+//        mySessionManager.setSessionListeners(listeners);
         //定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话,单位：毫秒
-        mySessionManager.setSessionValidationInterval(10 * 60 * 1000);
-        mySessionManager.setSessionValidationSchedulerEnabled(false);
+//        mySessionManager.setSessionValidationInterval(10 * 60 * 1000);
+//        mySessionManager.setSessionValidationSchedulerEnabled(false);
         return mySessionManager;
     }
 

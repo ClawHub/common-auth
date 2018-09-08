@@ -23,7 +23,7 @@ public interface ResourceFacade {
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    Set<SysResource> findPermissionsByUserId(String userId);
+    Set<SysResource> findSysResourcesByUserId(String userId);
 
     /**
      * Description: 获取所有资源列表 <br>

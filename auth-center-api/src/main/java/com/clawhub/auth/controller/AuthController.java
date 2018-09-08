@@ -135,4 +135,11 @@ public class AuthController {
         return JsonUtil.getErrorJson("100006");
     }
 
+    @RequestMapping(value = "/getInfo")
+    public String getInfo() {
+        logger.info("AuthController.getInfo");
+        JSONObject info = tokenService.getInfo(SecurityUtils.getSubject().getSession().getId());
+        return JsonUtil.getSucc(info, "10000");
+    }
+
 }
