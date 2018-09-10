@@ -3,7 +3,7 @@ package com.clawhub.auth.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.service.TokenService;
-import com.clawhub.util.json.JsonUtil;
+import com.clawhub.result.ResultUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -69,15 +69,15 @@ public class AuthController {
             tokenService.saveTokenInfo(username, token);
             //返回给前端
             jsonObject.put("token", token);
-            return JsonUtil.getSucc(jsonObject, "100000", null);
+            return ResultUtil.getSucc(jsonObject, "100000", null);
         } catch (IncorrectCredentialsException e) {
-            return JsonUtil.getErrorJson("100001");
+            return ResultUtil.getError("100001");
         } catch (LockedAccountException e) {
-            return JsonUtil.getErrorJson("100002");
+            return ResultUtil.getError("100002");
         } catch (AuthenticationException e) {
-            return JsonUtil.getErrorJson("100003");
+            return ResultUtil.getError("100003");
         } catch (Exception e) {
-            return JsonUtil.getErrorJson("100004");
+            return ResultUtil.getError("100004");
         }
     }
 
@@ -93,7 +93,7 @@ public class AuthController {
 //    @ApiOperation(notes = "未登录", value = "未登录", produces = "application/json")
     public String unauth() {
         logger.info("AuthController.unAuth");
-        return JsonUtil.getErrorJson("100005");
+        return ResultUtil.getError("100005");
     }
 
     /**
@@ -132,14 +132,14 @@ public class AuthController {
 //    @ApiOperation(notes = "未授权", value = "未授权", produces = "application/json")
     public String unAuthorized() {
         logger.info("AuthController.unAuthorized");
-        return JsonUtil.getErrorJson("100006");
+        return ResultUtil.getError("100006");
     }
 
     @RequestMapping(value = "/getInfo")
     public String getInfo() {
         logger.info("AuthController.getInfo");
         JSONObject info = tokenService.getInfo(SecurityUtils.getSubject().getSession().getId());
-        return JsonUtil.getSucc(info, "10000");
+        return ResultUtil.getSucc(info, "10000");
     }
 
 }

@@ -7,7 +7,7 @@ import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.service.ResourceService;
 import com.clawhub.auth.service.RoleService;
 import com.clawhub.auth.service.UserService;
-import com.clawhub.constants.StatusParamConstant;
+import com.clawhub.constants.StatusConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +57,11 @@ public class TokenFacadeImpl implements TokenFacade {
         Set<String> menus = new HashSet<>();
         for (SysResource sysResource : sysResources) {
             //button例子：role:create,role:update,role:delete,role:view
-            if (StatusParamConstant.RESOURCE_TYPE_BUTTON.equals(sysResource.getResourceType())) {
+            if (StatusConstant.RESOURCE_TYPE_BUTTON.equals(sysResource.getResourceType())) {
                 buttons.add(sysResource.getPermission());
             }
             //menu例子：role:*
-            if (StatusParamConstant.RESOURCE_TYPE_MENU.equals(sysResource.getResourceType())) {
+            if (StatusConstant.RESOURCE_TYPE_MENU.equals(sysResource.getResourceType())) {
                 menus.add(sysResource.getPermission());
             }
         }
