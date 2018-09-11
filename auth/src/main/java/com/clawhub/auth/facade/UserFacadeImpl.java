@@ -58,4 +58,20 @@ public class UserFacadeImpl implements UserFacade {
         userRole.setUserId(sysUser.getUserId());
         userRoleService.add(roleIds, userRole);
     }
+
+    @Override
+    public void batchDelUser(List<String> userIds, SysUser currentUser) {
+        SysUser sysUser = new SysUser();
+        sysUser.setUpdateOperatorId(currentUser.getUserId());
+        sysUser.setUpdateOperatorName(currentUser.getUsername());
+        sysUser.setUpdateTime(System.currentTimeMillis());
+        sysUser.setIsDelete(StatusConstant.DELETED);
+        userService.batchDelUser(sysUser, userIds);
+        UserRole userRole = new UserRole();
+        userRole.setUpdateOperatorId(currentUser.getUserId());
+        userRole.setUpdateOperatorName(currentUser.getUsername());
+        userRole.setUpdateTime(System.currentTimeMillis());
+        userRole.setIsDelete(StatusConstant.DELETED);
+        userRoleService.batchDel(userRole, userIds);
+    }
 }

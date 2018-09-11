@@ -21,4 +21,12 @@ public interface UserRoleService {
      * @param userRole 用户校角色信息
      */
     void add(List<String> roleIds, UserRole userRole);
+
+    /**
+     * 批量删除角色用户关系
+     *
+     * @param userRole 角色用户关系
+     * @param userIds  用户角色列表
+     */
+    int batchDel(UserRole userRole, List<String> userIds);
 }

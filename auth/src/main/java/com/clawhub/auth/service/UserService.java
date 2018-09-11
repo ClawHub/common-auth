@@ -3,6 +3,8 @@ package com.clawhub.auth.service;
 import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.vo.SearchModel;
 
+import java.util.List;
+
 /**
  * <Description> 用户管理接口 <br>
  *
@@ -37,4 +39,12 @@ public interface UserService {
      * @param sysUser sysUser
      */
     void addUser(SysUser sysUser);
+
+    /**
+     * 批量删除用户
+     *
+     * @param sysUser 用户信息
+     * @param userIds 用户ID列表
+     */
+    int batchDelUser(SysUser sysUser, List<String> userIds);
 }

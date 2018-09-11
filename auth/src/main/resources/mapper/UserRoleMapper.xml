@@ -27,6 +27,18 @@
             #{userRole.isDelete} , #{userRole.userId}, #{item})
         </foreach>
     </insert>
+    <!--删除专用批量更新关系-->
+    <update id="batchUpdateForDel">
+        UPDATE t_user_role
+        SET update_operator_id = #{userRole.updateOperatorId},
+        update_operator_name = #{userRole.updateOperatorName},
+        update_time = #{userRole.updateTime},
+        is_delete = #{userRole.isDelete}
+        WHERE user_id IN
+        <foreach collection="userIds" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
 
     <!-- 根据用户id获取角色ID列表 -->
     <select id="findRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.String">

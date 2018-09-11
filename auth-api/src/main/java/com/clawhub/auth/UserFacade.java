@@ -2,7 +2,6 @@ package com.clawhub.auth;
 
 import com.clawhub.auth.entity.SysUser;
 import com.clawhub.auth.vo.SearchModel;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,4 +41,12 @@ public interface UserFacade {
      * @param roleIds 角色ID列表
      */
     void addUser(SysUser sysUser, List<String> roleIds);
+
+    /**
+     * 批量删除
+     *
+     * @param userIds     用户ID列表
+     * @param currentUser 操作用户
+     */
+    void batchDelUser(List<String> userIds, SysUser currentUser);
 }

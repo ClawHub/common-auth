@@ -59,4 +59,9 @@ public class UserServiceImpl implements UserService {
     public void addUser(SysUser sysUser) {
         sysUserMapper.insert(sysUser);
     }
+
+    @Override
+    public int batchDelUser(SysUser sysUser, List<String> userIds) {
+        return sysUserMapper.batchUpdateUserForDel(sysUser, userIds);
+    }
 }
