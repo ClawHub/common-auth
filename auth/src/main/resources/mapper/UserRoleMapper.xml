@@ -17,6 +17,16 @@
         <result column="user_id" jdbcType="VARCHAR" property="userId"/>
         <result column="role_id" jdbcType="VARCHAR" property="roleId"/>
     </resultMap>
+    <!--用户角色关系插入-->
+    <insert id="add">
+        INSERT INTO
+        t_user_role(id,create_operator_id,create_operator_name,create_time,is_delete,user_id,role_id)
+        VALUES
+        <foreach collection="roleIds" item="item" separator=",">
+            (#{item}, #{userRole.createOperatorId}, #{userRole.createOperatorName}, #{userRole.createTime},
+            #{userRole.isDelete} , #{userRole.userId}, #{item})
+        </foreach>
+    </insert>
 
     <!-- 根据用户id获取角色ID列表 -->
     <select id="findRoleIdsByUserId" parameterType="java.lang.String" resultType="java.lang.String">

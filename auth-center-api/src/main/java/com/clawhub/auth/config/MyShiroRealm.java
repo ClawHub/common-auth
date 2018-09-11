@@ -6,6 +6,7 @@ import com.clawhub.auth.RoleFacade;
 import com.clawhub.auth.UserFacade;
 import com.clawhub.auth.entity.SysResource;
 import com.clawhub.auth.entity.SysUser;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -130,4 +131,12 @@ public class MyShiroRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
+    /**
+     * Get authorization info authorization info.
+     *
+     * @return the authorization info
+     */
+    public AuthorizationInfo getAuthorizationInfo(){
+       return getAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
+    }
 }

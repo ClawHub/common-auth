@@ -3,9 +3,12 @@ package com.clawhub.auth.facade;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.clawhub.auth.UserFacade;
 import com.clawhub.auth.entity.SysUser;
+import com.clawhub.auth.entity.UserRole;
+import com.clawhub.auth.service.UserRoleService;
 import com.clawhub.auth.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.clawhub.auth.vo.SearchModel;
+import com.clawhub.constants.StatusConstant;
+import com.clawhub.util.IDGenarator;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,41 +25,37 @@ import java.util.List;
 public class UserFacadeImpl implements UserFacade {
 
     /**
-     * The Logger.
-     */
-    private Logger logger = LoggerFactory.getLogger(UserFacadeImpl.class);
-    /**
      * The User service.
      */
     @Autowired
     private UserService userService;
-
     /**
-     * Description: Find by username <br>
-     *
-     * @param username username
-     * @return sys user
-     * @author LiZhiming <br>
-     * @taskId <br>
+     * The User role service.
      */
+    @Autowired
+    private UserRoleService userRoleService;
+
     @Override
     public SysUser findByUsername(String username) {
-        logger.info("UserFacadeImpl.findByUsername");
-        logger.info("username :{}", username);
         return userService.findByUsername(username);
     }
 
-    public static void main(String[] args) {
-        System.out.println(System.currentTimeMillis());
-    }
-    /**
-     * Query all sys user list.
-     *
-     * @return the list
-     */
+
     @Override
-    public List<SysUser> queryAllSysUser() {
-        logger.info("UserFacadeImpl.queryAllSysUser");
-        return userService.queryAllSysUser();
+    public String queryUserByPage(SearchModel searchModel, SysUser sysUser) {
+        return userService.queryUserByPage(searchModel, sysUser);
+    }
+
+    @Override
+    public void addUser(SysUser sysUser, List<String> roleIds) {
+        userService.addUser(sysUser);
+        UserRole userRole = new UserRole();
+        userRole.setCreateOperatorId(sysUser.getCreateOperatorId());
+        userRole.setCreateOperatorName(sysUser.getCreateOperatorName());
+        userRole.setId(IDGenarator.getID());
+        userRole.setCreateTime(System.currentTimeMillis());
+        userRole.setIsDelete(StatusConstant.UN_DELETED);
+        userRole.setUserId(sysUser.getUserId());
+        userRoleService.add(roleIds, userRole);
     }
 }

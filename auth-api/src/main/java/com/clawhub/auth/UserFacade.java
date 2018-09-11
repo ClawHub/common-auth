@@ -1,6 +1,8 @@
 package com.clawhub.auth;
 
 import com.clawhub.auth.entity.SysUser;
+import com.clawhub.auth.vo.SearchModel;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,9 +27,19 @@ public interface UserFacade {
 
 
     /**
-     * 查询所有的用户信息
+     * 分页查询用户信息
      *
-     * @return the list
+     * @param searchModel 查询模型
+     * @param sysUser     用户模型
+     * @return 用户及分页信息
      */
-    List<SysUser> queryAllSysUser();
+    String queryUserByPage(SearchModel searchModel, SysUser sysUser);
+
+    /**
+     * 增加用户
+     *
+     * @param sysUser 用户信息
+     * @param roleIds 角色ID列表
+     */
+    void addUser(SysUser sysUser, List<String> roleIds);
 }

@@ -1,8 +1,7 @@
 package com.clawhub.auth.service;
 
 import com.clawhub.auth.entity.SysUser;
-
-import java.util.List;
+import com.clawhub.auth.vo.SearchModel;
 
 /**
  * <Description> 用户管理接口 <br>
@@ -24,9 +23,18 @@ public interface UserService {
     SysUser findByUsername(String username);
 
     /**
-     * Query all sys user list.
+     * 分页查询用户信息
      *
-     * @return the list
+     * @param searchModel 查询模型
+     * @param sysUser     用户模型
+     * @return 用户及分页信息
      */
-    List<SysUser> queryAllSysUser();
+    String queryUserByPage(SearchModel searchModel, SysUser sysUser);
+
+    /**
+     * 增加用户
+     *
+     * @param sysUser sysUser
+     */
+    void addUser(SysUser sysUser);
 }
