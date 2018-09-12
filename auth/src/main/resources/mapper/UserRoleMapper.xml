@@ -19,11 +19,14 @@
     </resultMap>
     <!--用户角色关系插入-->
     <insert id="add">
+        <selectKey keyProperty="id" resultType="String" order="BEFORE">
+            select replace(uuid(),'-','') from dual
+        </selectKey>
         INSERT INTO
         t_user_role(id,create_operator_id,create_operator_name,create_time,is_delete,user_id,role_id)
         VALUES
         <foreach collection="roleIds" item="roleId" separator=",">
-            (#{roleId}, #{userRole.createOperatorId}, #{userRole.createOperatorName}, #{userRole.createTime},
+            (#{id}, #{userRole.createOperatorId}, #{userRole.createOperatorName}, #{userRole.createTime},
             #{userRole.isDelete} , #{userRole.userId}, #{roleId})
         </foreach>
     </insert>
