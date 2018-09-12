@@ -1,7 +1,7 @@
 package com.clawhub.auth.mapper;
 
-import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.common.IMapper;
+import com.clawhub.auth.entity.SysRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -18,5 +18,14 @@ public interface SysRoleMapper extends IMapper<SysRole> {
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    List<String> findRoleNamesByRoleIds(@Param(value = "list") List<String> roleIds);
+    List<String> findRoleNamesByRoleIds(@Param(value = "roleIds") List<String> roleIds);
+
+    /**
+     * 删除专用批量更新
+     *
+     * @param roleIds 角色ID列表
+     * @param sysRole 角色
+     * @return 删除数量
+     */
+    int batchUpdateRoleForDel(@Param(value = "roleIds") List<String> roleIds, @Param(value = "sysRole") SysRole sysRole);
 }

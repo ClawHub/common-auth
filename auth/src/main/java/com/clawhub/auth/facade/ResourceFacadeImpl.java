@@ -60,5 +60,6 @@ public class ResourceFacadeImpl implements ResourceFacade {
      */
     @Override
     public void insertResource(SysResource sysResource) {
+        resourceService.add(sysResource);
     }
 }

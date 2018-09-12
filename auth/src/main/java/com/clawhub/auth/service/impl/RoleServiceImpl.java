@@ -1,9 +1,15 @@
 package com.clawhub.auth.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.mapper.SysRoleMapper;
 import com.clawhub.auth.mapper.UserRoleMapper;
 import com.clawhub.auth.service.RoleService;
+import com.clawhub.auth.vo.SearchModel;
+import com.clawhub.constants.ParamConstant;
+import com.clawhub.result.ResultUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -72,7 +78,24 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<SysRole> queryAllSysRole() {
-        return sysRoleMapper.selectAll();
+    public String queryRoleByPage(SearchModel searchModel, SysRole sysRole) {
+        Page<SysRole> page = PageHelper.startPage(searchModel.getPageNumber(), searchModel.getPageSize());
+        List<SysRole> list = sysRoleMapper.select(sysRole);
+        page.getTotal();
+        JSONObject pageObject = new JSONObject();
+        pageObject.put(ParamConstant.PAGE_ROWS, list);
+        pageObject.put(ParamConstant.PAGE_TOTAL, page.getTotal());
+        return ResultUtil.getSucc(pageObject, "1000");
     }
+
+    @Override
+    public void addRole(SysRole sysRole) {
+        sysRoleMapper.insert(sysRole);
+    }
+
+    @Override
+    public int batchDel(List<String> roleIds, SysRole sysRole) {
+        return sysRoleMapper.batchUpdateRoleForDel(roleIds, sysRole);
+    }
+
 }

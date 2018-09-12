@@ -3,9 +3,10 @@ package com.clawhub.auth.entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "t_role_resource")
-public class RoleResource {
+public class RoleResource implements Serializable {
     /**
      * id
      */

@@ -1,6 +1,7 @@
 package com.clawhub.auth.service;
 
 import com.clawhub.auth.entity.SysRole;
+import com.clawhub.auth.vo.SearchModel;
 
 import java.util.List;
 import java.util.Set;
@@ -25,9 +26,27 @@ public interface RoleService {
     Set<String> findRoleNamesByUserId(String userId);
 
     /**
-     * 查询所有角色列表
+     * 分页查询角色
      *
-     * @return 所有角色列表
+     * @param searchModel 查询模型
+     * @param sysRole     角色
+     * @return 角色信息
      */
-    List<SysRole> queryAllSysRole();
+    String queryRoleByPage(SearchModel searchModel, SysRole sysRole);
+
+    /**
+     * 新增角色
+     *
+     * @param sysRole 角色信息
+     */
+    void addRole(SysRole sysRole);
+
+    /**
+     * 批量删除角色
+     *
+     * @param roleIds 角色ID列表
+     * @param sysRole 角色信息
+     * @return 删除数量
+     */
+    int batchDel(List<String> roleIds, SysRole sysRole);
 }

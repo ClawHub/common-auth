@@ -27,22 +27,22 @@
 
     <!--根据权限ID列表获取权限列表 -->
     <select id="findResourcesByIds" parameterType="java.util.List" resultMap="BaseResultMap">
-        select *
-        from t_sys_resource
-        where is_delete = '0'
-        and state = '0'
-        and resource_id in
-        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
-            #{item,jdbcType=VARCHAR}
+        SELECT *
+        FROM t_sys_resource
+        WHERE is_delete = '0'
+        AND state = '0'
+        AND resource_id IN
+        <foreach close=")" collection="resourceIds" index="index" item="resourceId" open="(" separator=",">
+            #{resourceId,jdbcType=VARCHAR}
         </foreach>
     </select>
 
     <!--获取所有权限列表-->
     <select id="selectAllResource" resultMap="BaseResultMap">
-        select *
-        from t_sys_resource
-        where is_delete = '0'
-        and state = '0'
+        SELECT *
+        FROM t_sys_resource
+        WHERE is_delete = '0'
+        AND state = '0'
         ORDER BY sort ASC
     </select>
 </mapper>

@@ -31,7 +31,12 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public int batchDel(UserRole userRole, List<String> userIds) {
-        return userRoleMapper.batchUpdateForDel(userRole, userIds);
+    public int batchDelByUserIds(UserRole userRole, List<String> userIds) {
+        return userRoleMapper.batchUpdateForDelByUserIds(userRole, userIds);
+    }
+
+    @Override
+    public int batchDelByRoleIds(UserRole userRole, List<String> roleIds) {
+        return userRoleMapper.batchUpdateForDelByRoleIds(userRole, roleIds);
     }
 }

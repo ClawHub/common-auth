@@ -10,6 +10,7 @@ import com.clawhub.auth.vo.SearchModel;
 import com.clawhub.constants.StatusConstant;
 import com.clawhub.util.IDGenarator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -47,6 +48,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
+    @Transactional
     public void addUser(SysUser sysUser, List<String> roleIds) {
         userService.addUser(sysUser);
         UserRole userRole = new UserRole();
@@ -60,6 +62,7 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
+    @Transactional
     public void batchDelUser(List<String> userIds, SysUser currentUser) {
         SysUser sysUser = new SysUser();
         sysUser.setUpdateOperatorId(currentUser.getUserId());
@@ -72,6 +75,6 @@ public class UserFacadeImpl implements UserFacade {
         userRole.setUpdateOperatorName(currentUser.getUsername());
         userRole.setUpdateTime(System.currentTimeMillis());
         userRole.setIsDelete(StatusConstant.DELETED);
-        userRoleService.batchDel(userRole, userIds);
+        userRoleService.batchDelByUserIds(userRole, userIds);
     }
 }

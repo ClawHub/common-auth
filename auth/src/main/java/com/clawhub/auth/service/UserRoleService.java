@@ -23,10 +23,20 @@ public interface UserRoleService {
     void add(List<String> roleIds, UserRole userRole);
 
     /**
-     * 批量删除角色用户关系
+     * 通过userIds批量删除角色用户关系
      *
      * @param userRole 角色用户关系
-     * @param userIds  用户角色列表
+     * @param userIds  用户列表
+     * @return 删除条数
      */
-    int batchDel(UserRole userRole, List<String> userIds);
+    int batchDelByUserIds(UserRole userRole, List<String> userIds);
+
+    /**
+     * 通过roleIds批量删除角色用户关系
+     *
+     * @param userRole 角色用户关系
+     * @param roleIds  角色列表
+     * @return 删除条数
+     */
+    int batchDelByRoleIds(UserRole userRole, List<String> roleIds);
 }

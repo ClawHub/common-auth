@@ -2,6 +2,7 @@ package com.clawhub.auth;
 
 import com.clawhub.auth.entity.SysRole;
 import com.clawhub.auth.entity.SysUser;
+import com.clawhub.auth.vo.SearchModel;
 
 import java.util.List;
 import java.util.Set;
@@ -26,9 +27,27 @@ public interface RoleFacade {
     Set<String> findRoleNamesByUserId(String userId);
 
     /**
-     * 查询所有的角色信息
+     * 分页查询角色
      *
-     * @return 所有的角色信息
+     * @param searchModel 查询模型
+     * @param sysRole     角色
+     * @return 角色信息
      */
-    List<SysRole> queryAllSysRole();
+    String queryRoleByPage(SearchModel searchModel, SysRole sysRole);
+
+    /**
+     * 新增角色
+     *
+     * @param sysRole     角色信息
+     * @param resourceIds 资源ID列表
+     */
+    void addRole(SysRole sysRole, List<String> resourceIds);
+
+    /**
+     * 批量删除
+     *
+     * @param roleIds     角色ID列表
+     * @param currentUser 操作用户
+     */
+    void batchDelRole(List<String> roleIds, SysUser currentUser);
 }

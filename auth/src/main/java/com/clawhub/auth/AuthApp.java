@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
 /**
@@ -17,6 +18,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @MapperScan("com.clawhub.auth.mapper")
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.clawhub"})//swagger 使用
+@EnableTransactionManagement
 public class AuthApp {
     /**
      * Description: 启动springboot<br>

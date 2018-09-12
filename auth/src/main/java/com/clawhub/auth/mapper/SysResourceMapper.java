@@ -18,7 +18,7 @@ public interface SysResourceMapper extends IMapper<SysResource> {
      * @author LiZhiming <br>
      * @taskId <br>
      */
-    List<SysResource> findResourcesByIds(@Param(value = "list") List<String> resourceIds);
+    List<SysResource> findResourcesByIds(@Param(value = "resourceIds") List<String> resourceIds);
 
     /**
      * Description:获取所有权限列表 <br>

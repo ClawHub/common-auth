@@ -19,17 +19,29 @@
         <result column="state" jdbcType="CHAR" property="state"/>
         <result column="description" jdbcType="VARCHAR" property="description"/>
     </resultMap>
+    <!--删除专用批量更新-->
+    <update id="batchUpdateRoleForDel">
+        UPDATE t_sys_role
+        SET update_operator_id = #{sysRole.updateOperatorId},
+        update_operator_name = #{sysRole.updateOperatorName},
+        update_time = #{sysRole.updateTime},
+        is_delete = #{sysRole.isDelete}
+        WHERE role_id IN
+        <foreach collection="roleIds" index="index" item="roleId" separator="," open="(" close=")">
+            #{roleId}
+        </foreach>
+    </update>
 
 
     <!--根据角色ID列表获取角色名称列表 -->
     <select id="findRoleNamesByRoleIds" parameterType="java.util.List" resultType="java.lang.String">
-        select role_name
-        from t_sys_role
-        where is_delete = '0'
-        and state = '0'
-        and role_id in
-        <foreach close=")" collection="list" index="index" item="item" open="(" separator=",">
-            #{item,jdbcType=VARCHAR}
+        SELECT role_name
+        FROM t_sys_role
+        WHERE is_delete = '0'
+        AND state = '0'
+        AND role_id IN
+        <foreach close=")" collection="roleIds" index="roleId" item="item" open="(" separator=",">
+            #{roleId,jdbcType=VARCHAR}
         </foreach>
     </select>
 

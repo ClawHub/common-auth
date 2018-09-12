@@ -32,4 +32,11 @@ public interface ResourceService {
      * @taskId <br>
      */
     List<SysResource> getAllResource();
+
+    /**
+     * 新增资源
+     *
+     * @param sysResource 资源信息
+     */
+    void add(SysResource sysResource);
 }

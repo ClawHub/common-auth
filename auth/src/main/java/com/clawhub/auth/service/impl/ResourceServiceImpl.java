@@ -50,14 +50,6 @@ public class ResourceServiceImpl implements ResourceService {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    /**
-     * Description: 根据用户ID获取权限列表<br>
-     *
-     * @param userId userId
-     * @return list
-     * @author LiZhiming <br>
-     * @taskId <br>
-     */
     @Override
     public Set<SysResource> findSysResourcesByUserId(String userId) {
         logger.info("PermissionServiceImpl.findPermissionsByUserId");
@@ -82,15 +74,13 @@ public class ResourceServiceImpl implements ResourceService {
         return new HashSet<>(resources);
     }
 
-    /**
-     * Description: 获取所有权限列表 <br>
-     *
-     * @return list
-     * @author LiZhiming <br>
-     * @taskId <br>
-     */
     @Override
     public List<SysResource> getAllResource() {
         return sysResourceMapper.selectAllResource();
+    }
+
+    @Override
+    public void add(SysResource sysResource) {
+        sysResourceMapper.insert(sysResource);
     }
 }

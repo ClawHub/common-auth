@@ -29,11 +29,20 @@ public interface UserRoleMapper extends IMapper<UserRole> {
     void add(@Param(value = "userRole") UserRole userRole, @Param(value = "roleIds") List<String> roleIds);
 
     /**
-     * 删除专用批量更新关系
+     * 通过userIds批量删除角色用户关系
      *
-     * @param userRole userRole
-     * @param userIds  userIds
-     * @return 数量
+     * @param userRole 角色用户关系
+     * @param userIds  用户列表
+     * @return 删除条数
      */
-    int batchUpdateForDel(@Param("userRole") UserRole userRole, @Param("userIds") List<String> userIds);
+    int batchUpdateForDelByUserIds(@Param("userRole") UserRole userRole, @Param("userIds") List<String> userIds);
+
+    /**
+     * 通过roleIds批量删除角色用户关系
+     *
+     * @param userRole 角色用户关系
+     * @param roleIds  角色列表
+     * @return 删除条数
+     */
+    int batchUpdateForDelByRoleIds(@Param("userRole") UserRole userRole, @Param("roleIds") List<String> roleIds);
 }

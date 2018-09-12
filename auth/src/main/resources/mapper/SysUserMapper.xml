@@ -28,8 +28,8 @@
         update_time = #{sysUser.updateTime},
         is_delete = #{sysUser.isDelete}
         WHERE user_id IN
-        <foreach collection="userIds" index="index" item="item" separator="," open="(" close=")">
-            #{item}
+        <foreach collection="userIds" index="index" item="userId" separator="," open="(" close=")">
+            #{userId}
         </foreach>
     </update>
 </mapper>
