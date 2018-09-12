@@ -45,7 +45,6 @@ public class RoleFacadeImpl implements RoleFacade {
     @Autowired
     private UserRoleService userRoleService;
 
-    @Autowired
     @Override
     public Set<String> findRoleNamesByUserId(String userId) {
         return roleService.findRoleNamesByUserId(userId);
