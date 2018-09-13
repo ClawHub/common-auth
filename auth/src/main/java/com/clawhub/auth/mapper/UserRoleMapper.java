@@ -5,6 +5,7 @@ import com.clawhub.auth.entity.UserRole;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * The interface User role mapper.
@@ -23,10 +24,10 @@ public interface UserRoleMapper extends IMapper<UserRole> {
     /**
      * 新增角色与用户对应关系
      *
-     * @param userRole 用户信息
-     * @param roleIds  角色列表
+     * @param userRole   用户信息
+     * @param roleIdsMap key:id  val:角色列表
      */
-    void add(@Param(value = "userRole") UserRole userRole, @Param(value = "roleIds") List<String> roleIds);
+    void add(@Param(value = "userRole") UserRole userRole, @Param(value = "roleIdsMap") Map<String, String> roleIdsMap);
 
     /**
      * 通过userIds批量删除角色用户关系

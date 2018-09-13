@@ -3,10 +3,13 @@ package com.clawhub.auth.service.impl;
 import com.clawhub.auth.entity.UserRole;
 import com.clawhub.auth.mapper.UserRoleMapper;
 import com.clawhub.auth.service.UserRoleService;
+import com.clawhub.util.IDGenarator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <Description> 用户角色服务实现<br>
@@ -27,7 +30,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 
     @Override
     public void add(List<String> roleIds, UserRole userRole) {
-        userRoleMapper.add(userRole, roleIds);
+        Map<String, String> roleIdsMap = new HashMap<>();
+        for (String roleId : roleIds) {
+            roleIdsMap.put(IDGenarator.getID(), roleId);
+        }
+        userRoleMapper.add(userRole, roleIdsMap);
     }
 
     @Override

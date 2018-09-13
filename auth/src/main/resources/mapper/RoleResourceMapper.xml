@@ -22,7 +22,7 @@
         INSERT INTO
         t_role_resource(id,create_operator_id,create_operator_name,create_time,is_delete,resource_id,role_id)
         VALUES
-        <foreach collection="resourceIds" item="resourceId" separator=",">
+        <foreach collection="resourceIdsMap" index="id" item="resourceId" separator=",">
             (#{id}, #{roleResource.createOperatorId}, #{roleResource.createOperatorName},
             #{roleResource.createTime},
             #{roleResource.isDelete} , #{resourceId}, #{roleResource.roleId})

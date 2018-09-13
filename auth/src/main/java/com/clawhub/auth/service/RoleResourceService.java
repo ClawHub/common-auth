@@ -3,6 +3,7 @@ package com.clawhub.auth.service;
 import com.clawhub.auth.entity.RoleResource;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <Description> 角色资源服务接口<br>
@@ -16,7 +17,7 @@ public interface RoleResourceService {
     /**
      * 新增角色资源关系
      *
-     * @param resourceIds  资源id列表
+     * @param resourceIds  资源ID列表
      * @param roleResource 角色资源信息
      */
     void add(List<String> resourceIds, RoleResource roleResource);

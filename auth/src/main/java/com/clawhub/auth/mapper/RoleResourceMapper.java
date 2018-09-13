@@ -5,6 +5,7 @@ import com.clawhub.auth.entity.RoleResource;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * The interface Role Resource mapper.
@@ -23,10 +24,10 @@ public interface RoleResourceMapper extends IMapper<RoleResource> {
     /**
      * 新增角色资源关系
      *
-     * @param resourceIds  资源ID列表
+     * @param resourceIdsMap  key：ID val:资源ID列表
      * @param roleResource 角色资源信息
      */
-    void add(@Param(value = "resourceIds") List<String> resourceIds, @Param(value = "roleResource") RoleResource roleResource);
+    void add(@Param(value = "resourceIdsMap") Map<String,String> resourceIdsMap, @Param(value = "roleResource") RoleResource roleResource);
 
     /**
      * 通过角色ID列表批量删除角色资源对应关系
