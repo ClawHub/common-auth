@@ -15,6 +15,7 @@ import org.crazycake.shiro.RedisSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,6 +37,13 @@ public class ShiroConfig {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * The Shiro switch.
+     * true:关闭
+     * false:开启
+     */
+    @Value("${shiro.switch}")
+    private boolean shiroSwitch;
     /**
      * 日志
      */
@@ -60,6 +68,10 @@ public class ShiroConfig {
         //shiroFilterFactoryBean.setSuccessUrl("/auth/success");
         //未授权界面;
         shiroFilterFactoryBean.setUnauthorizedUrl("/auth/unAuthorized");
+        //开关控制
+        if (shiroSwitch) {
+            return shiroFilterFactoryBean;
+        }
         // 权限控制map.
         shiroFilterFactoryBean.setFilterChainDefinitionMap(getAuthFacadeAdapter().loadFilterChainDefinitions());
         return shiroFilterFactoryBean;
